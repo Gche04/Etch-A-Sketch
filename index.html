@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Etch-A-Sketch</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <div class="main">
+        <div class="main-item">
+            <div class="tool-container">
+            
+                <div class="picked-color"></div>
+        
+                <img id="eraser" src="./images/eraser.png" alt="eraser">
+    
+                <div class="slidecontainer">
+                    <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+                    <div class="output"></div>
+                </div> 
+            </div>
+    
+            <div class="board-nd-color">
+    
+                <div class="board"></div>
+    
+                <div class="color-container">
+                
+                    <div class="colors">
+                        <div id="black" class="color"></div>
+                        <div id="red" class="color"></div>
+                        <div id="green" class="color"></div>
+                        <div id="blue" class="color"></div>
+                        <div id="pink" class="color"></div>
+                        <div id="yellow" class="color"></div>
+                        <div id="purple" class="color"></div>
+                        <div id="orange" class="color"></div>
+                        <div id="brown" class="color"></div>
+                        <div id="gray" class="color"></div>
+                        <div id="pick" class="color">P</div>
+                    </div>
+                    
+                    <div class="pick-color">
+                        <canvas width="300px" height="300px" id="color_canvas"></canvas>
+                        <div class="marker"></div>
+
+                        <div class="rgba-sliders">
+                            <div class="red-slidecontainer">
+                                <input type="range" min="0" max="255" value="0" class="slider" id="rRange">
+                            </div>
+                
+                             <div class="green-slidecontainer">
+                                <input type="range" min="0" max="255" value="0" class="slider" id="gRange">
+                            </div>
+                
+                            <div class="blue-slidecontainer">
+                                <input type="range" min="0" max="255" value="255" class="slider" id="bRange">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+    
+    
+    <script src="script.js"></script>
+</body>
+</html>
