@@ -32,9 +32,8 @@ canvas{
 }
 
 .tool-container{
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: center;
-    width: 600px;
 }
 
 .picked-color{
