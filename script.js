@@ -1,7 +1,4 @@
 
-const hover = document.querySelector('.hover');
-const mouseDown = document.querySelector('.mouse-down')
-
 const colors = document.querySelectorAll('.color');
 
 const marker = document.querySelector('.marker');
@@ -52,7 +49,7 @@ eraser.addEventListener('click', setEraser, false);
 board.addEventListener('mouseover', boardColorWithMouseDown, false);
 
 var colorCanvas = document.getElementById('color_canvas');
-var ColorCtx = colorCanvas .getContext('2d');  //create 2D context for the canvas
+var ColorCtx = colorCanvas .getContext('2d');
 
 const redR = document.getElementById('rRange');
 const greenR = document.getElementById('gRange');
@@ -65,83 +62,30 @@ const A = 1;
 
 redR.addEventListener('input', e => {
     R = redR.value;
-    var color = `rgba(${R},${G},${B},${A})`;
-    let gradientH = ColorCtx .createLinearGradient(0, 0, ColorCtx .canvas.width, 0);
-    gradientH.addColorStop(0, '#fff');
-    gradientH.addColorStop(1, color);
-    ColorCtx .fillStyle = gradientH;
-    ColorCtx .fillRect(0, 0, ColorCtx .canvas.width, ColorCtx .canvas.height);
-
-
-    // Create a Vertical Gradient(white to black)
-    let gradientV = ColorCtx .createLinearGradient(0, 0, 0, 300);
-    gradientV.addColorStop(0, 'rgba(0,0,0,0)');
-    gradientV.addColorStop(1, '#000');
-    ColorCtx .fillStyle = gradientV;
-    ColorCtx .fillRect(0, 0, ColorCtx .canvas.width, 
-    ColorCtx .canvas.height); 
+    colorGradient(); 
 })
 
 greenR.addEventListener('input', e => {
     G = greenR.value;
-    var color = `rgba(${R},${G},${B},${A})`;
-    let gradientH = ColorCtx .createLinearGradient(0, 0, ColorCtx .canvas.width, 0);
-    gradientH.addColorStop(0, '#fff');
-    gradientH.addColorStop(1, color);
-    ColorCtx .fillStyle = gradientH;
-    ColorCtx .fillRect(0, 0, ColorCtx .canvas.width, ColorCtx .canvas.height);
-
-
-// Create a Vertical Gradient(white to black)
-    let gradientV = ColorCtx .createLinearGradient(0, 0, 0, 300);
-    gradientV.addColorStop(0, 'rgba(0,0,0,0)');
-    gradientV.addColorStop(1, '#000');
-    ColorCtx .fillStyle = gradientV;
-    ColorCtx .fillRect(0, 0, ColorCtx .canvas.width, 
-    ColorCtx .canvas.height); 
+    colorGradient() ;
 })
 
 blueR.addEventListener('input', e => {
     B = blueR.value;
-    var color = `rgba(${R},${G},${B},${A})`;
-    let gradientH = ColorCtx .createLinearGradient(0, 0, ColorCtx .canvas.width, 0);
-    gradientH.addColorStop(0, '#fff');
-    gradientH.addColorStop(1, color);
-    ColorCtx .fillStyle = gradientH;
-    ColorCtx .fillRect(0, 0, ColorCtx .canvas.width, ColorCtx .canvas.height);
-
-
-// Create a Vertical Gradient(white to black)
-    let gradientV = ColorCtx .createLinearGradient(0, 0, 0, 300);
-    gradientV.addColorStop(0, 'rgba(0,0,0,0)');
-    gradientV.addColorStop(1, '#000');
-    ColorCtx .fillStyle = gradientV;
-    ColorCtx .fillRect(0, 0, ColorCtx .canvas.width, 
-    ColorCtx .canvas.height); 
+    colorGradient(); 
 })
 
-var color = `rgba(${R},${G},${B},${A})`;
-let gradientH = ColorCtx .createLinearGradient(0, 0, ColorCtx .canvas.width, 0);
-gradientH.addColorStop(0, '#fff');
-gradientH.addColorStop(1, color);
-ColorCtx .fillStyle = gradientH;
-ColorCtx .fillRect(0, 0, ColorCtx .canvas.width, ColorCtx .canvas.height);
-
-
-// Create a Vertical Gradient(white to black)
- let gradientV = ColorCtx .createLinearGradient(0, 0, 0, 300);
- gradientV.addColorStop(0, 'rgba(0,0,0,0)');
- gradientV.addColorStop(1, '#000');
- ColorCtx .fillStyle = gradientV;
- ColorCtx .fillRect(0, 0, ColorCtx .canvas.width, 
- ColorCtx .canvas.height); 
+colorGradient(); 
 
 colorCanvas.addEventListener('click',function(event){
-    let x = event.clientX;  // Get X coordinate
-    let y = event.clientY;  // Get Y coordinate
-    pixel = ColorCtx.getImageData(x,y,1,1)['data'];   // Read pixel Color
-    rgb = `rgb(${pixel[0]},${pixel[1]},${pixel[2]})`;
-    document.getElementById('pick').style = 'background-color: ' + rgb;   // Set this color to #pick background
+    let rect = event. target. getBoundingClientRect();
+    let x = event. clientX - rect. left; //x position within the element.
+    let y = event. clientY - rect. top; //y position within the element
+
+    pixel = ColorCtx.getImageData(x,y,1,1).data;   // Read pixel Color
+    let rgb = `rgba(${pixel[0]},${pixel[1]},${pixel[2]},${pixel[3]})`;
+    
+    document.getElementById('pick').style = 'background-color: ' + rgb;
     document.querySelector('.picked-color').style = 'background-color: ' + rgb;
 
     marker.style.top = event.pageY + 'px';
@@ -149,6 +93,23 @@ colorCanvas.addEventListener('click',function(event){
 }, false);
 
 
+function colorGradient(){
+    var color = `rgba(${R},${G},${B},${A})`;
+    let gradientH = ColorCtx .createLinearGradient(0, 0, ColorCtx.canvas.width, 0);
+    gradientH.addColorStop(0, '#fff');
+    gradientH.addColorStop(1, color);
+    ColorCtx .fillStyle = gradientH;
+    ColorCtx .fillRect(0, 0, ColorCtx.canvas.width, ColorCtx.canvas.height);
+
+
+    // Create a Vertical Gradient(white to black)
+    let gradientV = ColorCtx .createLinearGradient(0, 0, 0, 300);
+    gradientV.addColorStop(0, 'rgba(0,0,0,0)');
+    gradientV.addColorStop(1, '#000');
+    ColorCtx .fillStyle = gradientV;
+    ColorCtx .fillRect(0, 0, ColorCtx.canvas.width, 
+    ColorCtx .canvas.height); 
+}
 
 function setColor(){
     let pickedCol = window.getComputedStyle(this).backgroundColor;
@@ -193,6 +154,11 @@ function boardColorWithMouseDown(){
     })
 }
 
+
+
+
+
+/*--------this function has not been used  ----*/
 function boardColor(){
     
     const col = document.querySelector('.picked-color').backgroundColor;
