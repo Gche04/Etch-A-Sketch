@@ -132,67 +132,55 @@ canvas{
 }
   /* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
 .slider::-webkit-slider-thumb {
+    background: gray;
+}
+  
+.slider::-moz-range-thumb {
+    background: gray; 
+}
+
+.slider::-webkit-slider-thumb,
+#rRange::-webkit-slider-thumb, 
+#gRange::-webkit-slider-thumb,
+#bRange::-webkit-slider-thumb{
     -webkit-appearance: none; 
     appearance: none;
     width: 10px; 
     height: 25px; 
-    background: gray;
-    cursor: pointer; 
-}
-  
-.slider::-moz-range-thumb {
+    cursor: pointer;
+} 
+
+.slider::-moz-range-thumb,
+#rRange::-moz-range-thumb, 
+#gRange::-moz-range-thumb,
+#bRange::-moz-range-thumb{
     width: 10px; 
-    height: 25px; 
-    background: gray; 
+    height: 25px;  
     cursor: pointer; 
 }
 
 #rRange::-webkit-slider-thumb {
-    -webkit-appearance: none; 
-    appearance: none;
-    width: 10px; 
-    height: 25px; 
     background: red;
-    cursor: pointer; 
 }
   
 #rRange::-moz-range-thumb {
-    width: 10px; 
-    height: 25px; 
     background: red; 
-    cursor: pointer; 
 }
 
 #gRange::-webkit-slider-thumb {
-    -webkit-appearance: none; 
-    appearance: none;
-    width: 10px; 
-    height: 25px; 
     background: green;
-    cursor: pointer; 
 }
   
 #gRange::-moz-range-thumb {
-    width: 10px; 
-    height: 25px; 
     background: green; 
-    cursor: pointer; 
 }
 
 #bRange::-webkit-slider-thumb {
-    -webkit-appearance: none; 
-    appearance: none;
-    width: 10px; 
-    height: 25px; 
     background: blue;
-    cursor: pointer; 
 }
   
 #bRange::-moz-range-thumb {
-    width: 10px; 
-    height: 25px; 
-    background: blue; 
-    cursor: pointer; 
+    background: blue;
 }
 
 #red{
